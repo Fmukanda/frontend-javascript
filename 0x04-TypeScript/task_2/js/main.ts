@@ -55,7 +55,7 @@ function createEmployee(salary: number | string): Employee {
   }
 }
 
-function isDirector(employee: Employee): employee is Director {
+export function isDirector(employee: Employee): employee is Director {
   // Check if the employee has the workDirectorTasks method specific to Director
   return (employee as Director).workDirectorTasks !== undefined;
 }
@@ -70,3 +70,30 @@ function executeWork(employee: Employee): string {
     return employee.workTeacherTasks();
   }
 }
+
+// Demonstration function
+export function demonstrateRequestedFunctions(): void {
+  console.log('=== Demonstrating Requested Functions ===');
+  
+  // Create employees
+  const teacherEmployee = createEmployee(200);
+  const directorEmployee = createEmployee(1000);
+  
+  // Test isDirector function
+  console.log('\n1. Testing isDirector function:');
+  console.log(`isDirector(createEmployee(200)): ${isDirector(teacherEmployee)}`);
+  console.log(`isDirector(createEmployee(1000)): ${isDirector(directorEmployee)}`);
+  
+  // Test executeWork function - This shows the expected results
+  console.log('\n2. Testing executeWork function:');
+  console.log(`executeWork(createEmployee(200)): ${executeWork(teacherEmployee)}`);
+  console.log(`executeWork(createEmployee(1000)): ${executeWork(directorEmployee)}`);
+  
+  // Expected output demonstration
+  console.log('\n3. Expected Results:');
+  console.log('executeWork(createEmployee(200)); // Expected: "Getting to work"');
+  console.log('executeWork(createEmployee(1000)); // Expected: "Getting to director tasks"');
+}
+
+// Export the requested functions
+export { isDirector, executeWork, createEmployee, Employee };
